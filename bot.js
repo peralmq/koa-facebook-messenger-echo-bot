@@ -1,9 +1,13 @@
 'use strict';
 function echo(event) {
-  return Promise.resolve({
-    messageText: event.message.text,
-    senderId: event.sender.id
-  });
+  if (typeof event.message !== 'undefined' && event.message !== null) {
+    return Promise.resolve({
+      messageText: event.message.text,
+      senderId: event.sender.id
+    });
+  } else {
+    return Promise.resolve({});
+  }
 }
 
 module.exports = {
